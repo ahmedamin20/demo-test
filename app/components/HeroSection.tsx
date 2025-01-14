@@ -28,12 +28,12 @@ const HeroSection = () => {
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in-up">
           Welcome to Demo
         </h1>
-        <p className="text-xl md:text-2xl text-[#FFE90B] mb-8 animate-fade-in-up animation-delay-300">
+        <p className="text-xl md:text-2xl text-demo-yellow mb-8 animate-fade-in-up animation-delay-300">
           Innovating through prototyping and 3D printing
         </p>
         <Link
           href="/order"
-          className="bg-[#FFE90B] text-[#010A18] px-8 py-3 rounded-full font-semibold hover:bg-[#376683] hover:text-white transition-colors duration-300 animate-fade-in-up animation-delay-600"
+          className="bg-demo-yellow text-[#010A18] px-8 py-3 rounded-full font-semibold hover:bg-[#376683] hover:text-white transition-colors duration-300 animate-fade-in-up animation-delay-600"
         >
           Start Your Project
         </Link>

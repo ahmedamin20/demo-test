@@ -1,6 +1,7 @@
-'use client'
+"use client";
 
-import { useEffect, useRef } from 'react';
+import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 const VisionMission = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -10,7 +11,7 @@ const VisionMission = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
+            entry.target.classList.add("animate-fade-in-up");
           }
         });
       },
@@ -29,26 +30,42 @@ const VisionMission = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-[#02112A] to-[#0C222F]">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-wrap -mx-4">
-          <div className="w-full md:w-1/2 px-4 mb-8 md:mb-0">
-            <h2 className="text-3xl font-bold text-[#FFE90B] mb-4">Our Vision</h2>
-            <p className="text-white">
-              To revolutionize product development through cutting-edge prototyping and 3D printing technologies, empowering innovators to bring their ideas to life faster and more efficiently than ever before.
-            </p>
-          </div>
-          <div className="w-full md:w-1/2 px-4">
-            <h2 className="text-3xl font-bold text-[#FFE90B] mb-4">Our Mission</h2>
-            <p className="text-white">
-              We are committed to providing top-quality prototyping and 3D printing services, fostering innovation, and supporting our clients throughout their product development journey. Our goal is to accelerate the path from concept to reality, helping businesses and individuals turn their visions into tangible success.
-            </p>
+    <section ref={sectionRef} className="py-20 ">
+      <section className="py-20 ">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="text-white">
+              <h2 className="text-3xl text-demo-yellow font-bold mb-6">
+                Vision :
+              </h2>
+              <p className="my-5">Generation of prototypers.</p>
+              <h2 className="text-3xl text-demo-yellow font-bold mb-6">
+                Mission :
+              </h2>
+              <p className="mb-4">
+                Our mission is to transform Egypt’s manufacturing landscape by
+                creating a thriving ecosystem for prototypers. We aim to inspire
+                and empower a community of innovators through world-class
+                prototyping services, engaging events, hands-on workshops, and
+                expert mentorship. By fostering collaboration and creativity, we
+                aspire to showcase Egyptian innovation to the world in a unique
+                and impactful way.
+              </p>
+            </div>
+            <div>
+              <Image
+                src="/placeholder.svg?height=400&width=600"
+                alt="Vision and Mission"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 };
 
 export default VisionMission;
-

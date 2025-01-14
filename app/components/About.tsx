@@ -45,13 +45,8 @@ const About = () => {
           <div className="w-full md:w-1/2 px-4">
             <h2 className="text-3xl font-bold text-[#FFE90B] mb-4">About Demo</h2>
             <p className="text-white mb-4">
-              Demo is a leading innovator in the field of prototyping and 3D printing. With years of experience and a passion for pushing the boundaries of what's possible, we've helped countless clients bring their ideas to life.
-            </p>
-            <p className="text-white mb-4">
-              Our state-of-the-art facilities and expert team allow us to tackle projects of any scale, from individual entrepreneurs to large corporations. We pride ourselves on our attention to detail, quick turnaround times, and unwavering commitment to quality.
-            </p>
-            <p className="text-white">
-              At Demo, we're not just service providers – we're partners in innovation. Let us help you turn your concepts into reality.
+            Demo, founded in 2025, offers comprehensive prototyping services for manufacturers, entrepreneurs, and students in Egypt. We handle all stages of prototyping with diverse materials, helping turn ideas into reality.
+            Beyond services, Demo builds a community for Egyptian prototypers, fostering innovation through workshops, events, and mentorship. Our mission is to redefine Egypt’s manufacturing and showcase its potential to the world.
             </p>
           </div>
         </div>
