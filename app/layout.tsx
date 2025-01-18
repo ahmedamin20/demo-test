@@ -4,6 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Demo Prototyping',
   description: 'Cutting-edge prototyping, 3D printing services and Finishing',
+  authors: [{ name: 'Ahmed Amin', url: "https://ahmedamin.tech" }]
 
 }
 
