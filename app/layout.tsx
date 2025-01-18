@@ -3,7 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Demo Prototyping',
-  description: 'Created with v0',
+  description: 'Cutting-edge prototyping, 3D printing services and Finishing',
+
 }
 
 export default function RootLayout({
