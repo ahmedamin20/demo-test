@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-
+import { mission } from "@/assets";
 const VisionMission = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -54,7 +54,7 @@ const VisionMission = () => {
             </div>
             <div>
               <Image
-                src="/placeholder.svg?height=400&width=600"
+                src={mission}
                 alt="Vision and Mission"
                 width={600}
                 height={400}

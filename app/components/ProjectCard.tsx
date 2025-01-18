@@ -1,13 +1,14 @@
-'use client'
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from "react";
+import Image from "next/image";
+import { TProjectType } from "@/constants/keys";
 
 interface Project {
   id: number;
   title: string;
   description: string;
-  type: '3D Printing' | 'Prototyping';
+  type: TProjectType;
   images: string[];
 }
 
@@ -18,12 +19,22 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
 
-  const nextImage = () => setCurrentImageIndex((prevIndex) => (prevIndex + 1) % project.images.length);
-  const prevImage = () => setCurrentImageIndex((prevIndex) => (prevIndex - 1 + project.images.length) % project.images.length);
+  const nextImage = () =>
+    setCurrentImageIndex(
+      (prevIndex) => (prevIndex + 1) % project.images.length
+    );
+  const prevImage = () =>
+    setCurrentImageIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + project.images.length) % project.images.length
+    );
 
   return (
     <>
-      <div className="bg-[#02112A] rounded-lg shadow-xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105" onClick={openPopup}>
+      <div
+        className="bg-[#02112A] rounded-lg shadow-xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105"
+        onClick={openPopup}
+      >
         <div className="relative h-64">
           <Image
             src={project.images[0]}
@@ -33,10 +44,15 @@ const ProjectCard = ({ project }: { project: Project }) => {
           />
         </div>
         <div className="p-6">
-          <h3 className="text-xl font-semibold text-[#FFE90B] mb-2">{project.title}</h3>
+          <h3 className="text-xl font-semibold text-demo-yellow mb-2">
+            {project.title}
+          </h3>
           <p className="text-white mb-4 line-clamp-2">{project.description}</p>
           <span className="inline-block bg-[#376683] text-white text-sm px-3 py-1 rounded-full">
-            {project.type}
+            {Object.keys(TProjectType).find(
+              (key: string) =>
+                TProjectType[key as keyof typeof TProjectType] === project.type
+            )}
           </span>
         </div>
       </div>
@@ -44,7 +60,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
           <div className="bg-[#02112A] rounded-lg p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <h2 className="text-2xl font-bold text-[#FFE90B] mb-4">{project.title}</h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-demo-yellow mb-4">
+                {project.title}
+              </h2>
+              <span
+                onClick={closePopup}
+                className="bg-demo-yellow cursor-pointer text-red-500 font-bold border px-2 hover:bg-transparent border-demo-yellow transition-all duration-[0.5s] rounded-md"
+              >
+                X
+              </span>
+            </div>
             <div className="relative h-96 mb-4">
               <Image
                 src={project.images[currentImageIndex]}
@@ -54,13 +80,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 className="rounded-lg"
               />
               <button
-                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-[#FFE90B] text-[#010A18] px-3 py-1 rounded-full"
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-demotext-demo-yellow text-[#010A18] px-3 py-1 rounded-full"
                 onClick={prevImage}
               >
                 &#8592;
               </button>
               <button
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-[#FFE90B] text-[#010A18] px-3 py-1 rounded-full"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-demotext-demo-yellow text-[#010A18] px-3 py-1 rounded-full"
                 onClick={nextImage}
               >
                 &#8594;
@@ -68,14 +94,19 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </div>
             <p className="text-white mb-4">{project.description}</p>
             <span className="inline-block bg-[#376683] text-white text-sm px-3 py-1 rounded-full mb-4">
-              {project.type}
+              {Object.keys(TProjectType).find(
+                (key: string) =>
+                  TProjectType[key as keyof typeof TProjectType] ===
+                  project.type
+              )}
             </span>
-            <button
-              className="bg-[#FFE90B] text-[#010A18] px-4 py-2 rounded-full font-semibold hover:bg-[#376683] hover:text-white transition-colors duration-300"
+            {/* <br/> */}
+            {/* <button
+              className="bg-demo-yellow text-[#010A18] px-4 py-2 rounded-full font-semibold hover:bg-[#376683] hover:text-white transition-colors duration-300"
               onClick={closePopup}
             >
               Close
-            </button>
+            </button> */}
           </div>
         </div>
       )}
@@ -84,4 +115,3 @@ const ProjectCard = ({ project }: { project: Project }) => {
 };
 
 export default ProjectCard;
-

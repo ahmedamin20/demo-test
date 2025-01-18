@@ -1,6 +1,8 @@
 'use client'
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import logo from "../../assets/logo.png"
+import Image from 'next/image';
 
 const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -25,11 +27,14 @@ const HeroSection = () => {
         className="absolute inset-0 bg-gradient-to-r from-[#010A18] to-[#03284C]"
       ></div>
       <div className="relative z-10 text-center">
+        <div className="animate-fade-in-up flex-wrap animation-delay-300 flex w-full justify-center items-center md:gap-[20px]">
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-4 animate-fade-in-up">
-          Welcome to Demo
+          Welcome to
         </h1>
+        <Image src={logo} alt='logo' width={180} height={180} className=''/>
+        </div>
         <p className="text-xl md:text-2xl text-demo-yellow mb-8 animate-fade-in-up animation-delay-300">
-          Innovating through prototyping and 3D printing
+          House of prototyping
         </p>
         <Link
           href="/order"
