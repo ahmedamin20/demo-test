@@ -5,6 +5,8 @@ export const orderSchema = z.object({
     email: z.string().email('Invalid email address'),
     phone: z.string().min(10, 'Phone number must be at least 10 digits'),
     serviceType: z.string().nonempty('Please select a service type'),
+    universityName: z.string().nullable(),
+    userType: z.number({message: "Required"}),
     file: z
       .instanceof(File)
       .refine((file) => file.size <= 5000000, 'Max file size is 5MB'),

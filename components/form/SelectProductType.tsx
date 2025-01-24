@@ -1,4 +1,4 @@
-import { TProjectType } from "@/constants/keys";
+import { TProjectType } from "@/modules/constants/FormSeleteMenuData";
 import React, { useState } from "react";
 import { IoMdCloseCircle } from "react-icons/io";
 

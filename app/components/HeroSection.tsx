@@ -34,7 +34,7 @@ const HeroSection = () => {
         <Image src={logo} alt='logo' width={180} height={180} className=''/>
         </div>
         <p className="text-xl md:text-2xl text-demo-yellow mb-8 animate-fade-in-up animation-delay-300">
-          House of prototyping
+          The House of prototyping
         </p>
         <Link
           href="/order"
