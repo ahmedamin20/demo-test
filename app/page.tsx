@@ -4,6 +4,7 @@ import VisionMission from './components/VisionMission';
 import About from './components/About';
 import RecentWork from './components/RecentWork';
 import Services from './components/Services';
+import OurTeam from './components/OurTeam';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Services/>
       <About />
       <RecentWork />
+      <OurTeam/>
     </Layout>
   );
 }
