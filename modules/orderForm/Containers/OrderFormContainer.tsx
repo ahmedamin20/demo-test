@@ -117,7 +117,7 @@ const OrderFormContainer = () => {
                     watch={watch}
                   />
                 )}
-                <div className="flex flex-row w-full gap-[20px] justify-between">
+                <div className="flex mt-2 flex-row w-full gap-[20px] justify-between">
                   {step === stepsCount && (
                     <button
                       type="button"

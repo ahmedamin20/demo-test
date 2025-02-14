@@ -8,8 +8,6 @@ import { UseFormWatch } from "react-hook-form";
 import ProtoTypingForm from "./step3Forms/ProtoTypingForm";
 
 export interface TStep3Props extends TFormDefaulProps {
-  //   seletedUserType: number | null;
-  //   handleUserTypeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   trigger: any;
   setValue: (name: string, value: number | string) => void;
   watch: UseFormWatch<any>;
