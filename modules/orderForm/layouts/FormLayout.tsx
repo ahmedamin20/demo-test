@@ -19,7 +19,7 @@ const FormLayout = ({
     <div className="flex flex-col w-full space-y-4 gap-[30px]">
       {children}
       <div className="flex flex-row w-full gap-[20px] justify-between">
-        {currentStep > 1 && (
+        {currentStep > 1 && currentStep !== stepsCount && (
           <button
             type="button"
             onClick={prevStep}
@@ -36,15 +36,6 @@ const FormLayout = ({
             className="w-full bg-demo-yellow text-[#010A18] px-4 py-2 rounded-full font-semibold hover:bg-[#376683] hover:text-white transition-colors duration-300"
           >
             Next
-          </button>
-        )}
-
-        {currentStep === stepsCount && (
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors duration-300"
-          >
-            Submit
           </button>
         )}
       </div>

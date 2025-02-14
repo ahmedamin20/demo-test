@@ -1,31 +1,33 @@
 "use client";
 import Layout from "@/app/components/Layout";
-import InputField from "@/components/form/InputField";
+import showToast from "@/modules/toast/constainer/ToastContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { handleSelectMenuChange } from "../helpers/handleSelectMenuChange";
 import FormLayout from "../layouts/FormLayout";
-import Step1 from "../steps/Step1";
-import Step2 from "../steps/Step2";
-import showToast from "@/modules/toast/constainer/ToastContainer";
-import { step2Schema } from "../schema/step2Schema";
 import { step1Schema } from "../schema/Step1Schema";
 import { OrderFormData } from "../schema/combinedSchema";
+import { step2Schema } from "../schema/step2Schema";
+import Step1 from "../steps/Step1";
+import Step2 from "../steps/Step2";
 import Step3 from "../steps/Step3";
+import { step3Schema } from "../schema/step3Schema";
 
 const OrderFormContainer = () => {
   const [step, setStep] = useState(1);
   const [type, setType] = useState<string | null>(null);
   const [userType, setUserType] = useState<string | number | null>(null);
-  const schemas = [step1Schema, step2Schema];
+  const schemas = [step1Schema, step2Schema, step3Schema()];
   const currentSchema = schemas[step - 1]; // Select schema based on current step
-
+  const stepsCount = 3;
   const {
     register,
     handleSubmit,
     setValue,
     trigger,
+    getValues,
+    watch,
     formState: { errors },
   } = useForm<OrderFormData>({
     resolver: zodResolver(currentSchema),
@@ -34,10 +36,14 @@ const OrderFormContainer = () => {
 
   const onSubmit: SubmitHandler<OrderFormData> = (data) => {
     console.log(data);
+    console.log(getValues(), "get values");
+    console.log(errors, "errors");
     alert("Order submitted successfully!");
   };
 
   const nextStep = async () => {
+    console.log(errors, "errors");
+    console.log(getValues(), "values");
     const isStepValid = await trigger();
     if (!isStepValid) {
       showToast({
@@ -68,7 +74,7 @@ const OrderFormContainer = () => {
           </h1>
           <div className="max-w-md mx-auto bg-[#03284C] rounded-lg shadow-xl p-8">
             <FormLayout
-              stepsCount={3}
+              stepsCount={stepsCount}
               nextStep={nextStep}
               prevStep={prevStep}
               currentStep={step}
@@ -103,8 +109,33 @@ const OrderFormContainer = () => {
                 )}
 
                 {step === 3 && (
-                  <Step3/>
+                  <Step3
+                    trigger={trigger}
+                    setValue={setValue}
+                    errors={errors}
+                    register={register}
+                    watch={watch}
+                  />
                 )}
+                <div className="flex flex-row w-full gap-[20px] justify-between">
+                  {step === stepsCount && (
+                    <button
+                      type="button"
+                      onClick={prevStep}
+                      className="w-1/2 bg-[#376683] text-white px-4 py-2 rounded-full font-semibold hover:bg-[#FFE90B] hover:text-[#010A18] transition-colors duration-300"
+                    >
+                      Previous
+                    </button>
+                  )}
+                  {step === stepsCount && (
+                    <button
+                      type="submit"
+                      className="w-full bg-green-500 text-white px-4 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors duration-300"
+                    >
+                      Submit
+                    </button>
+                  )}
+                </div>
               </form>
             </FormLayout>
           </div>

@@ -1,50 +1,64 @@
-'use client';
-import { useSearchParams } from 'next/navigation';
-import React from 'react';
-import { TFormDefaulProps } from '../types/formStepProps';
-import { TProjectType } from '@/modules/constants/FormSeleteMenuData';
+"use client";
+import { useSearchParams } from "next/navigation";
+import React from "react";
+import { TFormDefaulProps } from "../types/formStepProps";
+import { TProjectType } from "@/modules/constants/FormSeleteMenuData";
+import Case3DPrintingForm from "./step3Forms/Case3DPrintingForm";
+import { UseFormWatch } from "react-hook-form";
+import ProtoTypingForm from "./step3Forms/ProtoTypingForm";
 
-interface TStep3Props extends TFormDefaulProps {
-  seletedUserType: number | null;
-  handleUserTypeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+export interface TStep3Props extends TFormDefaulProps {
+  //   seletedUserType: number | null;
+  //   handleUserTypeChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  trigger: any;
+  setValue: (name: string, value: number | string) => void;
+  watch: UseFormWatch<any>;
 }
-const Step3 = () => {
-    const searchParams = useSearchParams();
-    const serviceType = searchParams.get("serviceType");
-    // const type = TProjectType[serviceType as keyof typeof TProjectType];
+const Step3 = ({ errors, register, watch, setValue, trigger }: TStep3Props) => {
+  const searchParams = useSearchParams();
+  const serviceType = searchParams.get("serviceType");
 
-    switch(Number(serviceType)){
-        case TProjectType['3D-Printing']:
-            return(
-                <div>
-                    <h1>3D Printing</h1>
-                </div>
-            );
-        case TProjectType['3D-Design']:
-            return(
-                <div>
-                    <h1>3D Design</h1>
-                </div>
-            );
-        case TProjectType.finishing:
-            return(
-                <div>
-                    <h1>Finishing</h1>
-                </div>
-            );
-        case TProjectType.prototyping:
-            return(
-                <div>
-                    <h1>Prototyping</h1>
-                </div>
-            );
-        default:
-            return(
-                <div>
-                    <h1>Invalid Service Type</h1>
-                </div>
-            );
-    }
-}
+  switch (Number(serviceType)) {
+    case TProjectType["3D-Printing"]:
+      return (
+        <Case3DPrintingForm
+          trigger={trigger}
+          setValue={setValue}
+          errors={errors}
+          watch={watch}
+          register={register}
+        />
+      );
 
-export default Step3
+    case TProjectType["3D-Design"]:
+      return (
+        <div>
+          <h1>3D Design</h1>
+        </div>
+      );
+    case TProjectType.finishing:
+      return (
+        <div>
+          <h1>Finishing</h1>
+        </div>
+      );
+    case TProjectType.prototyping:
+      return (
+        <ProtoTypingForm
+          errors={errors}
+          register={register}
+          setValue={setValue}
+          trigger={trigger}
+          watch={watch}
+        />
+      );
+    default:
+      return (
+        <div>
+          <h1>Invalid Service Type</h1>
+        </div>
+      );
+  }
+};
+
+export default Step3;

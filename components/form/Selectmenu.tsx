@@ -16,7 +16,7 @@ interface SelectmenuProps {
   [key: string]: any;
 }
 
-const Selectmenu: React.FC<SelectmenuProps> = ({ id, label, register, options, error, onChange, ...rest }) => {
+const Selectmenu: React.FC<SelectmenuProps> = ({ id , label, register, options, error, onChange, ...rest }) => {
   return (
     <div className="space-y-2">
       <label htmlFor={id} className="block text-white font-medium">
@@ -28,7 +28,9 @@ const Selectmenu: React.FC<SelectmenuProps> = ({ id, label, register, options, e
         onChange={onChange}
         className="w-full px-3 py-2 bg-[#02112A] text-white rounded focus:outline-none focus:ring-2 focus:ring-demo-yellow"
         {...rest}
+        
       >
+        <option value={""} selected disabled></option>
         {options.map((option) => (
           <option key={option.id} value={option.id}>
             {option.name}

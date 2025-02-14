@@ -13,6 +13,16 @@
   }
 }
 
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.5s ease-out;
 }
@@ -23,5 +33,49 @@
 
 .animation-delay-600 {
   animation-delay: 600ms;
+}
+
+
+
+.filament-color-select .filament-select__control {
+  border-color: #376683;
+}
+
+.filament-color-select .filament-select__control:hover {
+  border-color: #ffe90b;
+}
+
+.filament-color-select .filament-select__control--is-focused {
+  border-color: #ffe90b;
+  box-shadow: 0 0 0 1px #ffe90b;
+}
+
+.filament-color-select .filament-select__menu {
+  background-color: #03284c;
+}
+
+.filament-color-select .filament-select__option {
+  background-color: #03284c;
+}
+
+.filament-color-select .filament-select__option--is-focused {
+  background-color: #0c222f;
+}
+
+.filament-color-select .filament-select__option--is-selected {
+  background-color: #376683;
+}
+
+.filament-color-select .filament-select__multi-value {
+  background-color: #376683;
+}
+
+.filament-color-select .filament-select__multi-value__label {
+  background-color: #e3f4ff4d;
+}
+
+.filament-color-select .filament-select__multi-value__remove:hover {
+  background-color: #0c222f;
+  color: #ffe90b;
 }
 
