@@ -106,7 +106,6 @@ const ProtoTypingForm = ({ errors, register, setValue }: TprotoTypingFormProps) 
         <>
           <FileUpload 
             label='Upload 3D File' 
-            // accept='.step,.stp,.obj,.stl' 
             // register={register}
             // id='threeDFile'
             onChange={e=>console.log(e)}
