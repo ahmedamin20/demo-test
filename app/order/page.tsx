@@ -1,8 +1,10 @@
 import OrderFormContainer from '@/modules/orderForm/Containers/OrderFormContainer'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 const page = () => {
-  return <OrderFormContainer />
+  return <Suspense fallback={<p>loading...</p>}>
+    <OrderFormContainer />
+    </Suspense>
 }
 
 export default page
