@@ -6,6 +6,7 @@ import { TProjectType } from "@/modules/constants/FormSeleteMenuData";
 import Case3DPrintingForm from "./step3Forms/Case3DPrintingForm";
 import { UseFormWatch } from "react-hook-form";
 import ProtoTypingForm from "./step3Forms/ProtoTypingForm";
+import Finishing from "./step3Forms/Finishing";
 
 export interface TStep3Props extends TFormDefaulProps {
   trigger: any;
@@ -36,9 +37,13 @@ const Step3 = ({ errors, register, watch, setValue, trigger }: TStep3Props) => {
       );
     case TProjectType.finishing:
       return (
-        <div>
-          <h1>Finishing</h1>
-        </div>
+        <Finishing
+        errors={errors}
+          register={register}
+          setValue={setValue}
+          trigger={trigger}
+          watch={watch}
+        />
       );
     case TProjectType.prototyping:
       return (
