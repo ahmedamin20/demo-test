@@ -7,6 +7,7 @@ import Case3DPrintingForm from "./step3Forms/Case3DPrintingForm";
 import { UseFormWatch } from "react-hook-form";
 import ProtoTypingForm from "./step3Forms/ProtoTypingForm";
 import Finishing from "./step3Forms/Finishing";
+import ThreeDDesign from "./step3Forms/ThreeDDesign";
 
 export interface TStep3Props extends TFormDefaulProps {
   trigger: any;
@@ -30,11 +31,13 @@ const Step3 = ({ errors, register, watch, setValue, trigger }: TStep3Props) => {
       );
 
     case TProjectType["3D-Design"]:
-      return (
-        <div>
-          <h1>3D Design</h1>
-        </div>
-      );
+      return <ThreeDDesign
+      errors={errors}
+        register={register}
+        setValue={setValue}
+        trigger={trigger}
+        watch={watch}
+      />
     case TProjectType.finishing:
       return (
         <Finishing
