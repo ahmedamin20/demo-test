@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { TProjectType } from "@/constants/keys";
+import { TProjectType } from "@/modules/constants/FormSeleteMenuData";
 
 interface Project {
   id: number;
