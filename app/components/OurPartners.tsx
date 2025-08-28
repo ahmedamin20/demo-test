@@ -45,26 +45,26 @@ const OurPartners = ({ data }: { data: TOurPartners[] }) => {
       </Button>
 
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
-        <div className="text-center space-y-6">
-          <div className="space-y-2">
-            <h1 className="text-4xl font-bold text-white">
-              Welcome to{" "}
-              <span className="bg-yellow-400 text-black px-2 py-1 rounded">
-                Demo
-              </span>
-            </h1>
-            <br/>
-            <p className="text-yellow-400 text-sm font-medium tracking-wider">
-              THE HOUSE OF{" "}
-              <span className="border border-yellow-400 px-2 py-0.5 rounded">
-                Prototyping
-              </span>
-            </p>
-          </div>
+  <div className="text-center space-y-6">
+    <div className="space-y-2">
+      <h1 className="text-2xl sm:text-4xl font-bold text-white">
+        Welcome to{" "}
+        <span className="bg-yellow-400 text-black px-2 py-1 rounded">
+          Demo
+        </span>
+      </h1>
+      <p className="text-yellow-400 text-xs sm:text-sm font-medium tracking-wider">
+        THE HOUSE OF{" "}
+        <span className="border border-yellow-400 px-2 py-0.5 rounded">
+          Prototyping
+        </span>
+      </p>
+    </div>
 
-          <PartnersFormView setIsOpen={setIsOpen} />
-        </div>
-      </Modal>
+    <PartnersFormView setIsOpen={setIsOpen} />
+  </div>
+</Modal>
+
     </div>
   );
 };
