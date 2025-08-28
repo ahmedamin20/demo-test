@@ -36,7 +36,7 @@ interface TserviceItem  {
   </div>
 )
 
-const Services = () => {
+const Services = ({images}:{images: string[]}) => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Services = () => {
       }
     }
   }, [])
-
+  const newData = servicesData.map((item, index) =>({...item, image: images[index]}))
   return (
     <section ref={sectionRef} className="py-20 bg-gradient-to-b px-2 from-[#03284C] to-[#0C222F]">
       <div className="container mx-auto px-4">
@@ -70,7 +70,7 @@ const Services = () => {
           {serviecSectionDescription}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {servicesData.map((service, index) => (
+          {newData.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}
         </div>

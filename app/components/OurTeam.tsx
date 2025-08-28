@@ -1,15 +1,15 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { TOurTeam } from "@/types/ourTeam"
 import Image from "next/image"
-import { teamMembers, TTeamMember } from "@/constants/ourTeamData"
+import { useEffect, useRef } from "react"
 
 
 
-const TeamMemberCard = ({ member } : {member: TTeamMember} ) => (
+const TeamMemberCard = ({ member } : {member: TOurTeam} ) => (
   <div className="bg-[#02112A] rounded-lg shadow-xl overflow-hidden transform transition-all duration-300 hover:scale-105">
     <Image
-      src={member.photo || "/placeholder.svg"}
+      src={member.imageUrl || "/placeholder.svg"}
       alt={member.name}
       width={300}
       height={300}
@@ -17,12 +17,12 @@ const TeamMemberCard = ({ member } : {member: TTeamMember} ) => (
     />
     <div className="p-6">
       <h3 className="text-xl font-bold text-[#FFE90B] mb-2">{member.name}</h3>
-      <p className="text-[#376683]">{member.role}</p>
+      <p className="text-[#376683]">{member.position}</p>
     </div>
   </div>
 )
 
-const OurTeam = () => {
+const OurTeam = ({ data }: { data: TOurTeam[] }) => {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const OurTeam = () => {
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-[#FFE90B] mb-12 text-center">Our Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {teamMembers.map((member, index) => (
+          {data.map((member, index) => (
             <TeamMemberCard key={index} member={member} />
           ))}
         </div>

@@ -4,6 +4,7 @@ import { Suspense, useState } from 'react';
 import { TProjectType } from '@/modules/constants/FormSeleteMenuData';
 import Layout from '@/app/components/Layout';
 import ProjectCard from '@/app/components/ProjectCard';
+import { ProjectResponse } from '@/types/projects';
 
 // export type TProjectTypes = '3D Printing' | 'Prototyping' | '3D Design' | 'Finishing'
 interface Project {
@@ -46,10 +47,10 @@ const projects: Project[] = [
   // Add more projects here
 ];
 
-export default function ProjectsPage() {
+export default function ProjectsPage({data}:{data: ProjectResponse[]}) {
   const [filter, setFilter] = useState<'All' | TProjectType>('All');
 
-  const filteredProjects = filter === 'All' ? projects : projects.filter(project => project.type === filter);
+  const filteredProjects = filter === 'All' ? data : data.filter(project => project.category === filter);
 
   return (
     <Suspense fallback={<p>Loading...</p>}>

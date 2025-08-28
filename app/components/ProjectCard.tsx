@@ -3,16 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { TProjectType } from "@/modules/constants/FormSeleteMenuData";
+import { ProjectResponse } from "@/types/projects";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  type: TProjectType;
-  images: string[];
-}
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = ({ project }: { project: ProjectResponse }) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -51,7 +45,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <span className="inline-block bg-[#376683] text-white text-sm px-3 py-1 rounded-full">
             {Object.keys(TProjectType).find(
               (key: string) =>
-                TProjectType[key as keyof typeof TProjectType] === project.type
+                TProjectType[key as keyof typeof TProjectType] === project.category
             )}
           </span>
         </div>
@@ -97,7 +91,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               {Object.keys(TProjectType).find(
                 (key: string) =>
                   TProjectType[key as keyof typeof TProjectType] ===
-                  project.type
+                  project.category
               )}
             </span>
             {/* <br/> */}

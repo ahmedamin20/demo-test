@@ -1,48 +1,68 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import { TOurWorkItem } from "@/types/ourWork";
 
 interface Project {
   id: number;
   title: string;
   description: string;
-  type: '3D Printing' | 'Prototyping';
+  type: "3D Printing" | "Prototyping";
   images: string[];
 }
 
 const projects: Project[] = [
   {
     id: 1,
-    title: '3D Printed Architectural Model',
-    description: 'A detailed 3D printed model of a modern skyscraper, showcasing intricate design elements.',
-    type: '3D Printing',
-    images: ['/placeholder.svg?height=300&width=400', '/placeholder.svg?height=300&width=400', '/placeholder.svg?height=300&width=400'],
+    title: "3D Printed Architectural Model",
+    description:
+      "A detailed 3D printed model of a modern skyscraper, showcasing intricate design elements.",
+    type: "3D Printing",
+    images: [
+      "/placeholder.svg?height=300&width=400",
+      "/placeholder.svg?height=300&width=400",
+      "/placeholder.svg?height=300&width=400",
+    ],
   },
   {
     id: 2,
-    title: 'Rapid Prototyping for Consumer Electronics',
-    description: 'A series of prototypes for a new smartphone design, demonstrating iterative improvements.',
-    type: 'Prototyping',
-    images: ['/placeholder.svg?height=300&width=400', '/placeholder.svg?height=300&width=400', '/placeholder.svg?height=300&width=400'],
+    title: "Rapid Prototyping for Consumer Electronics",
+    description:
+      "A series of prototypes for a new smartphone design, demonstrating iterative improvements.",
+    type: "Prototyping",
+    images: [
+      "/placeholder.svg?height=300&width=400",
+      "/placeholder.svg?height=300&width=400",
+      "/placeholder.svg?height=300&width=400",
+    ],
   },
 ];
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = ({ project }: { project: TOurWorkItem }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % project.images.length);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setCurrentImageIndex((prevIndex) => (prevIndex + 1) % project.images.length);
+  //   }, 3000);
 
-    return () => clearInterval(timer);
-  }, [project.images.length]);
+  //   return () => clearInterval(timer);
+  // }, [project.images.length]);
 
   return (
     <div className="bg-[#02112A] rounded-lg shadow-xl overflow-hidden">
       <div className="relative h-64">
-        {project.images.map((image, index) => (
+        <Image
+          src={project.imageUrl}
+          alt={`${project.title}`}
+          layout="fill"
+          objectFit="cover"
+          className={`transition-opacity duration-500 
+              opacity-100
+            `}
+        />
+        {/* {project.images.map((image, index) => (
           <Image
             key={index}
             src={image}
@@ -53,20 +73,22 @@ const ProjectCard = ({ project }: { project: Project }) => {
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           />
-        ))}
+        ))} */}
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-[#FFE90B] mb-2">{project.title}</h3>
+        <h3 className="text-xl font-semibold text-[#FFE90B] mb-2">
+          {project.title}
+        </h3>
         <p className="text-white mb-4">{project.description}</p>
         <span className="inline-block bg-[#376683] text-white text-sm px-3 py-1 rounded-full">
-          {project.type}
+          {project.category}
         </span>
       </div>
     </div>
   );
 };
 
-const RecentWork = () => {
+const RecentWork = ({ data }: { data: TOurWorkItem[] }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -74,7 +96,7 @@ const RecentWork = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in-up');
+            entry.target.classList.add("animate-fade-in-up");
           }
         });
       },
@@ -93,11 +115,16 @@ const RecentWork = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 bg-gradient-to-b from-[#03284C] to-[#376683]">
+    <section
+      ref={sectionRef}
+      className="py-20 bg-gradient-to-b from-[#03284C] to-[#376683]"
+    >
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-[#FFE90B] mb-8 text-center">Our Recent Work</h2>
+        <h2 className="text-3xl font-bold text-[#FFE90B] mb-8 text-center">
+          Our Recent Work
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {projects.map((project) => (
+          {data.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
@@ -107,4 +134,3 @@ const RecentWork = () => {
 };
 
 export default RecentWork;
-

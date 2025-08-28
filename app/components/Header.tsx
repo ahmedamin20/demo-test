@@ -19,7 +19,7 @@ const Header = () => {
     <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#02112A] shadow-lg' : 'bg-transparent'}`}>
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link href="/" className="">
-        <Image src={logo} alt='demo-logo' width={100} height={100} className='w-[100px]' objectFit='' />
+        <Image src={logo} alt='demo-logo' width={100} height={100} objectFit='' />
           {/* Demo */}
         </Link>
         <nav>
